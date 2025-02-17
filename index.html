@@ -36,10 +36,11 @@
 
                 if (validUsers[username] === password) {
                     // Construct the URL dynamically
-                    const potentialURL = `https://bit.ly/-121213${encodeURIComponent(username)}`;
+                    const baseURL = "https://bit.ly/-121213";
+                    const finalURL = `${baseURL}${username}`;
                     
                     // Redirect to the constructed URL
-                    window.location.href = potentialURL;
+                    window.location.href = finalURL;
                 } else {
                     document.getElementById('error-message').classList.remove('hidden');
                 }
