@@ -7,114 +7,158 @@
 
   <title>EResults</title>
   
-  <!-- HTML -->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  
   <h1>E<sub>Results</sub><i class="fa-solid fa-lock"></i></h1> 
   <div class="search">
- <input type="text" placeholder="Enter ID To Get Started..." required name="" id="inp">
- <button onclick="browse ()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <label for="inp" class="visually-hidden">Enter ID</label>
+    <input type="text" placeholder="Enter ID To Get Started..." required id="inp" aria-label="Enter ID">
+    <button onclick="browse()"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
-  <!-- Project -->
+
+  <!-- JavaScript -->
   <script>
-  
- function browse()
- {
-   document.body.innerHTML = '<iframe src="https://bit.ly/' + document.getElementById("inp").value + '" style="width:100%; min-height:1000px"></iframe>'
- }
+    function browse() {
+      const input = document.getElementById("inp").value.trim();
+      const validPattern = /^[a-zA-Z0-9]+$/; // Allow only alphanumeric characters
+      
+      if (!input) {
+        alert("Please enter a valid ID.");
+        return;
+      }
+      
+      if (!validPattern.test(input)) {
+        alert("Invalid ID. Please enter a valid alphanumeric ID.");
+        return;
+      }
+      
+      document.body.innerHTML = `<iframe src="https://bit.ly/${input}" style="width:100%; min-height:1000px; border:none;"></iframe>`;
+    }
   </script>
 </body>
-</html>
-<style>
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-image:url("https://img.freepik.com/free-vector/student-boy-cartoon-character-isolated-white-background_1308-62491.jpg?w=360&t=st=1688895862~exp=1688896462~hmac=0d6420a431d43d769784cf647eeff0878a6097b62993f02ad2ebe148cdc27c22");
-}
-.search{
-  position: relative;
-  bottom: 10vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20vw;
-  width: 90vw;
-  background:
-rgba( 255, 255, 255, 0.4 );
-backdrop-filter:
-blur( 4px );
--webkit-backdrop-filter:
-blur( 4px );
-border:
-1px solid rgba( 255, 255, 255, 0.18 );
-  
-}
-.search input{
-  height: 13vw;
-  width: 73%;
-  margin: 2vw;
-  text-align: center;
-  font-size: 6vw;
-  border: 1vw solid #000;
-  background: #000;
-  color: #fff;
-  font-weight: 400;
-  outline: none;
-}
-.search button{
-  height: 13vw;
-  width: 13vw;
-  font-weight: 900;
-  margin: 2vw;
-  font-size: 6vw;
-  background: #000;
-  border: none;
-  border-radius: 50%;
-  color: #fff;
-  text-align: center;
-  transition: .5s;
-  outline: none;
-}
-.search button:hover{
-  background: #fff;
-  color: #000;
-}
-iframe
-{
- position:fixed;
- 
- left:0px;
- top:0px;
- border:none;
-  
-}
-h1{
-  text-align: center;
-  position: relative;
-  font-size: 14vw;
-  margin: 5vw;
-  color: #000000;
-  bottom: 20vw;
 
-}
-.search input::placeholder{
-  font-size: 5vw;
-}
-h1 i {
-  color: #000;
-}
+<style>
+  /* General Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Body Styling */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url("https://img.freepik.com/free-vector/student-boy-cartoon-character-isolated-white-background_1308-62491.jpg?w=360&t=st=1688895862~exp=1688896462~hmac=0d6420a431d43d769784cf647eeff0878a6097b62993f02ad2ebe148cdc27c22");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Search Box Styling */
+  .search {
+    position: relative;
+    bottom: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vw;
+    width: 90vw;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .search input {
+    height: 13vw;
+    width: 73%;
+    margin: 2vw;
+    text-align: center;
+    font-size: 6vw;
+    border: 1vw solid #000;
+    background: #000;
+    color: #fff;
+    font-weight: 400;
+    outline: none;
+  }
+
+  .search input::placeholder {
+    font-size: 5vw;
+  }
+
+  .search button {
+    height: 13vw;
+    width: 13vw;
+    font-weight: 900;
+    margin: 2vw;
+    font-size: 6vw;
+    background: #000;
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    transition: 0.5s;
+    outline: none;
+  }
+
+  .search button:hover {
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+  }
+
+  /* Heading Styling */
+  h1 {
+    text-align: center;
+    position: relative;
+    font-size: 14vw;
+    margin: 5vw;
+    color: #000000;
+    bottom: 20vw;
+  }
+
+  h1 i {
+    color: #000;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 10vw;
+    }
+
+    .search input {
+      font-size: 4vw;
+    }
+
+    .search input::placeholder {
+      font-size: 3.5vw;
+    }
+
+    .search button {
+      font-size: 5vw;
+    }
+  }
+
+  /* Accessibility: Hidden Label */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 </style>
