@@ -35,10 +35,10 @@
                 const password = document.getElementById('password').value;
 
                 if (validUsers[username] === password) {
-                    // Replace with a valid URL
-                    const potentialURL = `bit.ly/-121213${username}`;
+                    // Construct the URL dynamically
+                    const potentialURL = `https://bit.ly/-121213${encodeURIComponent(username)}`;
                     
-                    // Redirect instead of using iframe
+                    // Redirect to the constructed URL
                     window.location.href = potentialURL;
                 } else {
                     document.getElementById('error-message').classList.remove('hidden');
